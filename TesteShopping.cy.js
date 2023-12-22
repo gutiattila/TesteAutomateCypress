@@ -1,12 +1,18 @@
+Cypress.Commands.add('login', (user) =>{
+    
+        
+    cy.visit('https://www.saucedemo.com/')
+    cy.get('[data-test="username"]').type(user.name); 
+     cy.get('[data-test="password"]').type(user.password);
+     cy.get('[data-test="login-button"]').click();
+    
 
+})
 describe("Teste shopping",()=>{
 
     it("testare adaugare produs", ()=>{
 
-        cy.visit("https://www.saucedemo.com/")
-        cy.get('[data-test="username"]').type("standard_user");// 
-        cy.get('[data-test="password"]').type("secret_sauce");
-        cy.get('[data-test="login-button"]').click();
+        cy.login({name : 'standard_user', password : 'secret_sauce'});
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
         cy.get(".shopping_cart_link").click();
         cy.get(".inventory_item_name").contains('Sauce Labs Bike Light');
@@ -15,10 +21,7 @@ describe("Teste shopping",()=>{
 
     it("testare stergere produs", ()=>{
 
-        cy.visit("https://www.saucedemo.com/")
-        cy.get('[data-test="username"]').type("standard_user");// 
-        cy.get('[data-test="password"]').type("secret_sauce");
-        cy.get('[data-test="login-button"]').click();
+        cy.login({name : 'standard_user', password : 'secret_sauce'});
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
         cy.get(".shopping_cart_link").click();
         cy.get(".inventory_item_name").contains('Sauce Labs Bike Light');
@@ -30,10 +33,7 @@ describe("Teste shopping",()=>{
 
     it("testare finalizare cumparare", ()=>{
 
-        cy.visit("https://www.saucedemo.com/")
-        cy.get('[data-test="username"]').type("standard_user");// 
-        cy.get('[data-test="password"]').type("secret_sauce");
-        cy.get('[data-test="login-button"]').click();
+        cy.login({name : 'standard_user', password : 'secret_sauce'});
         cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click();
         cy.get(".shopping_cart_link").click();
         cy.get('[data-test="checkout"]').click();
